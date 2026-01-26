@@ -11,21 +11,11 @@ struct ListingItemView: View {
     
     @State var isFavorite = false
     
-    var images = ["pexels-30nudos-adicora-164429726-11437918",
-                  "pexels-aasif-pathan-321950386-31222661",
-                  "pexels-artbovich-7746042"]
-    
     var body: some View {
         VStack(spacing: 8) {
             
-            TabView {
-                ForEach(images, id: \.self) { image in
-                    Image(image)
-                        .resizable()
-                        .scaledToFill()
-                }
-            }
-            .clipShape(RoundedRectangle(cornerRadius: 10))
+            ListingImageCarousalView()
+                .clipShape(RoundedRectangle(cornerRadius: 10))
             
             HStack(alignment: .top) {
                 VStack(alignment: .leading) {
@@ -39,12 +29,9 @@ struct ListingItemView: View {
                         .fontWeight(.bold)
                 }
                 Spacer()
-                Image(systemName: "star.fill")
-                Text("4.9")
-                    .fontWeight(.bold)
+                RatingsView(ratings: .constant(4.9))
             }
         }
-        .tabViewStyle(.page)
         .padding()
     }
 }
